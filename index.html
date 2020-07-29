@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Import Google Icon Font-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="Assets/style.css" />
+    <title>Weather Dashboard</title>
+  </head>
+  <body>
+    <!-- header outside of container -->
+    <h1 class="col s12 center-align grey section">
+      Weather Dashboard
+    </h1>
+    <!-- Single Row -->
+    <div class="row">
+      <!-- Two Columns -->
+      <div class="col s3 row grey lighten-4 left do-this">
+          <!-- search section -->
+          <div class="input-field col s9 center-align white">
+            <input
+              type="text"
+              class="validate"
+              placeholder="City, State"
+              id="city_state"
+            />
+          </div>
+          <div class="col s1 margin-div">
+            <button class="btn-floating indigo lighten-1">
+              <i class="material-icons">search</i>
+            </button>
+          </div>
+      </div>
+      <div class="col s8 right">
+        <div class="row card">
+          <div class="padding">
+            <h4>City Name (01/01/2001)</h4>
+            <p class="flow-text">Temperature: </p>
+            <p class="flow-text">Humidity: </p>
+            <p class="flow-text">Wind Speed: </p>
+            <p class="flow-text">UV Index: </p>
+          </div>
+        </div>
+        <div class="row">
+
+        </div>
+      </div>
+    </div>
+      <!-- content  -->
+    </div>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="Assets/script.js"></script>
+  </body>
+</html>

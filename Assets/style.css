@@ -1,0 +1,19 @@
+h1.section {
+  margin: 0px;
+}
+
+div.margin-div {
+  margin: 20px 0px;
+}
+
+div.padding {
+  padding: 10px 20px;
+}
+
+div.margin-sides {
+  margin: 0px 30px;
+}
+
+div.do-this {
+  margin-right: 40px;
+}
