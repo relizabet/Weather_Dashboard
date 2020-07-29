@@ -18,30 +18,33 @@
   </head>
   <body>
     <!-- header outside of container -->
-    <h1 class="col s12 center-align grey section">
+    <h1 class="col s12 center-align grey darken-3 section">
       Weather Dashboard
     </h1>
     <!-- Single Row -->
     <div class="row">
       <!-- Two Columns -->
-      <div class="col s3 row grey lighten-4 left do-this">
+      <div class="col s3 grey lighten-4 left do-this">
           <!-- search section -->
-          <div class="input-field col s9 center-align white">
-            <input
+          <div class="row">
+            <div class="input-field col s9 center-align ">
+              <input
               type="text"
-              class="validate"
-              placeholder="City, State"
+              class="validate white"
+              placeholder="  City, State"
               id="city_state"
-            />
+              />
+            </div>
+            <div class="col s1 margin-div">
+              <button class="btn-floating indigo lighten-1">
+                <i class="material-icons">search</i>
+              </button>
+            </div>
           </div>
-          <div class="col s1 margin-div">
-            <button class="btn-floating indigo lighten-1">
-              <i class="material-icons">search</i>
-            </button>
-          </div>
-      </div>
+          <div class="add-city row"></div>
+        </div>
       <div class="col s8 right">
-        <div class="row card">
+        <div class="row card margin-div">
           <div class="padding">
             <h4>City Name (01/01/2001)</h4>
             <p class="flow-text">Temperature: </p>
@@ -58,6 +61,7 @@
       <!-- content  -->
     </div>
     <!-- Compiled and minified JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="Assets/script.js"></script>
   </body>

@@ -1,5 +1,6 @@
 h1.section {
   margin: 0px;
+  color: white;
 }
 
 div.margin-div {
@@ -10,8 +11,8 @@ div.padding {
   padding: 10px 20px;
 }
 
-div.margin-sides {
-  margin: 0px 30px;
+input.margin-sides {
+  margin: 10px;
 }
 
 div.do-this {
