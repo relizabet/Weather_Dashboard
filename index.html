@@ -16,18 +16,18 @@
     <link rel="stylesheet" href="Assets/style.css" />
     <title>Weather Dashboard</title>
   </head>
-  <body>
+  <body class="grey lighten-4">
     <!-- header outside of container -->
-    <h1 class="col s12 center-align grey darken-3 section">
+    <h1 class="col l12 center-align indigo section">
       Weather Dashboard
     </h1>
     <!-- Single Row -->
     <div class="row">
       <!-- Two Columns -->
-      <div class="col s3 grey lighten-4 left do-this">
+      <div class="col l3 m12 s12  left do-this">
           <!-- search section -->
           <div class="row">
-            <div class="input-field col s9 center-align ">
+            <div class="input-field col l9 m9 s9 center-align ">
               <input
               type="text"
               class="validate white"
@@ -35,22 +35,56 @@
               id="city_state"
               />
             </div>
-            <div class="col s1 margin-div">
+            <div class="col l1 m1 s1 margin-div">
               <button class="btn-floating indigo lighten-1">
                 <i class="material-icons">search</i>
               </button>
             </div>
           </div>
-          <div class="add-city row"></div>
+          <div class="row addCity">
+          </div>
         </div>
-      <div class="col s8 right">
-        <div class="row card margin-div">
+      <div class="col l8 m12 s12 right">
+        <div class="row card margin-div offset-s10">
           <div class="padding">
             <h4>City Name (01/01/2001)</h4>
             <p class="flow-text">Temperature: </p>
             <p class="flow-text">Humidity: </p>
             <p class="flow-text">Wind Speed: </p>
             <p class="flow-text">UV Index: </p>
+          </div>
+        </div>
+        <h4>5 Day Forecast</h4>
+        <div class="row">
+          <div class="col card mediasm medialaptop l2 offset-l1 m10 s12 flow-text space-this">
+            <h5>01/01/2001</h5>
+            <div><i class="material-icons">cloud</i></div>
+            <p>Temp: </p>
+            <p>Humidity: </p>
+          </div>
+          <div class="col card mediasm medialaptop l2 offset-l1 m10 s12 flow-text space-this">
+            <h5>01/01/2001</h5>
+            <div><i class="material-icons">cloud</i></div>
+            <p>Temp: </p>
+            <p>Humidity: </p>
+          </div>
+          <div class="col card mediasm medialaptop l2 offset-l1 m10 s12 flow-text space-this">
+            <h5>01/01/2001</h5>
+            <div><i class="material-icons">cloud</i></div>
+            <p>Temp: </p>
+            <p>Humidity: </p>
+          </div>
+          <div class="col card mediasm medialaptop l2 offset-l1 m10 s12 flow-text space-this">
+            <h5>01/01/2001</h5>
+            <div><i class="material-icons">cloud</i></div>
+            <p>Temp: </p>
+            <p>Humidity: </p>
+          </div>
+          <div class="col card mediasm medialaptop l2 offset-l1 m10 s12 flow-text space-this">
+            <h5>01/01/2001</h5>
+            <div><i class="material-icons">cloud</i></div>
+            <p>Temp: </p>
+            <p>Humidity: </p>
           </div>
         </div>
         <div class="row">

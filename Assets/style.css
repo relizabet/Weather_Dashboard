@@ -18,3 +18,28 @@ input.margin-sides {
 div.do-this {
   margin-right: 40px;
 }
+div.space-this {
+  margin: 15px !important;
+  padding: 10px !important;
+}
+
+button.add-city {
+  background-color: white;
+  color: black !important;
+  margin-left: 15px !important;
+  margin-bottom: 5px !important;
+  border-color: black !important;
+  border: 1px;
+}
+
+@media only screen and (max-width: 1024px) {
+  div.medialaptop {
+    width: 90% !important;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  div.mediasm {
+    margin: 10px 0px !important;
+  }
+}
