@@ -17,6 +17,14 @@ $(document).ready(function () {
   // search button click, add button
   searchButton.click(function (event) {
     event.preventDefault();
+    // $("p.temp")[0].val("");
+    let clearOut = $("p.temp");
+    console.log(clearOut.val());
+    $("p.hum").val("");
+    $("p.wind").val("");
+    $("p.uvi").val("");
+    $("p.do-hide").hide();
+
     let cityInput = inputField.val().trim();
     console.log(cityInput);
     nameValue = nameValue += 1;
@@ -34,6 +42,7 @@ $(document).ready(function () {
     }
 
     addCity();
+    getWeather(cityInput);
   });
 
   // get today's UV index
@@ -43,15 +52,17 @@ $(document).ready(function () {
       method: "GET",
     }).then(function (response) {
       let uvIndexVal = `UV Index: ${response.value}`;
+      console.log(response);
 
       uvIndex.append(uvIndexVal);
     });
   }
 
   // get today's weather
-  function getWeather() {
+  function getWeather(cityInput) {
     // change this
-    let cityName = "San Diego";
+    console.log(cityInput);
+    let cityName = cityInput;
     console.log(CityNameDate[0].innerHTML);
 
     $.ajax({
@@ -60,6 +71,7 @@ $(document).ready(function () {
     }).then(function (response) {
       console.log(response);
       // get temp
+      console.log(response);
       let temperatureValue = `Temperature: ${response.main.temp}`;
       let humidityValue = `Humidity: ${response.main.humidity}`;
       let windSpeedValue = `Wind Speed: ${response.wind.speed}`;
@@ -75,7 +87,7 @@ $(document).ready(function () {
     });
   }
 
-  getWeather();
+  // getWeather();
 
   // searchButton.click(function (event) {
   //   event.preventDefault();

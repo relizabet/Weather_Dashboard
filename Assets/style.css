@@ -25,6 +25,7 @@ div.do-this {
 div.space-this {
   margin: 15px !important;
   padding: 10px !important;
+  font-size: inherit !important;
 }
 
 button.add-city {
