@@ -43,6 +43,7 @@ $(document).ready(function () {
 
     addCity();
     getWeather(cityInput);
+    getWeatherExtended(cityInput);
   });
 
   // get today's UV index
@@ -87,26 +88,17 @@ $(document).ready(function () {
     });
   }
 
-  // getWeather();
+  function getWeatherExtended(cityInput) {
+    console.log(cityInput);
+    let cityName = cityInput;
 
-  // searchButton.click(function (event) {
-  //   event.preventDefault();
-  //   let cityInput = inputField.val();
-  //   function addCity() {
-  //     nameValue = nameValue += 1;
-  //     let nameAll = nameName + nameValue;
-  //     let getNameAll = `div#${nameAll}`;
-  //     console.log(nameAll);
-
-  //     $(changeCity).attr("name", nameAll);
-  //     window.localStorage.setItem(nameAll, cityInput);
-  //     $(getNameAll).val(window.localStorage.getItem(nameAll));
-  //     console.log($(getNameAll).val(window.localStorage.getItem(nameAll)));
-  //     console.log(localStorage);
-  //   }
-
-  //   addCity();
-  // });
+    $.ajax({
+      url: `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}${unitImperial}${apiKey}`,
+      method: "GET",
+    }).then(function (response) {
+      console.log(response);
+    });
+  }
 });
 
 // address:
