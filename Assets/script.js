@@ -29,17 +29,17 @@ $(document).ready(function () {
     dateIndex++;
   }
 
-  // create buttons for any localStorage present
+  // if local storage is not empty
   if (localStorage.length !== 0) {
     for (indexStorage = 0; indexStorage < localStorage.length; indexStorage++) {
-      // let indexStorage = +1;
+      // create buttons for any localStorage present
       if (window.localStorage.getItem(`city${indexStorage}`) !== null) {
         let dispStorage = $("div.addCity");
         let localStorageCity = window.localStorage.getItem(
           `city${indexStorage}`
         );
         $(dispStorage).append(
-          `<button class='col l8 center-align m8 s8 add-city z-depth-1 btn'>${localStorageCity}</button>`
+          `<button class='col l8 center-align m8 s8 add-city z-depth-1 btn' name=${indexStorage} id='city${indexStorage}'>${localStorageCity}</button>`
         );
         nameValue++;
       }
@@ -49,31 +49,10 @@ $(document).ready(function () {
       // prevent page refresh
       event.preventDefault();
       // hide the intro paragraph
-      $("p.do-hide").hide();
+      // $("p.do-hide").hide();
+      let cityInput = inputField.val().toLowerCase().trim();
 
       // get the city being put into input field
-      let cityInput = inputField.val().trim();
-      // for each click the name value will increase
-      nameValue = nameValue += 1;
-      // give city an id
-      let cityID = nameName + nameValue;
-      // let getCityID = `button#${cityID}`;
-
-      // store variable to make button for city based on id and name value
-      const makeButton = `<button class='col l8 center-align m8 s8 add-city z-depth-1 btn' name=${nameValue} id=${cityID}>${cityInput}</button>`;
-
-      addCity(cityInput, cityID, makeButton);
-      getWeather(cityInput);
-    });
-  } else {
-    searchButton.click(function (event) {
-      // prevent page refresh
-      event.preventDefault();
-      // hide the intro paragraph
-      $("p.do-hide").hide();
-
-      // get the city being put into input field
-      let cityInput = inputField.val().trim();
       // for each click the name value will increase
       nameValue = nameValue += 1;
       // give city an id
@@ -87,6 +66,41 @@ $(document).ready(function () {
       getWeather(cityInput);
     });
   }
+  // if local storage is empty
+  else {
+    searchButton.click(function (event) {
+      // prevent page refresh
+      event.preventDefault();
+      // hide the intro paragraph
+      // $("p.do-hide").hide();
+
+      // get the city being put into input field
+      let cityInput = inputField.val().toLowerCase().trim();
+      console.log(cityInput);
+      // for each click the name value will increase
+      nameValue = nameValue += 1;
+      // give city an id
+      let cityID = nameName + nameValue;
+
+      // store variable to make button for city based on id and name value
+      const makeButton = `<button class='col l8 center-align m8 s8 add-city z-depth-1 btn' name=${nameValue} id=${cityID}>${cityInput}</button>`;
+
+      addCity(cityInput, cityID, makeButton);
+      getWeather(cityInput);
+    });
+  }
+
+  $(document).on("click", "button.add-city", function (event) {
+    event.preventDefault();
+
+    let cityID = this.id;
+    let cityInput = $(this).text();
+
+    getWeather(cityInput);
+
+    console.log(cityID);
+    console.log(cityInput);
+  });
 
   function addCity(cityInput, cityID, makeButton) {
     // add if to catch empty strings
