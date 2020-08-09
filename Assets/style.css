@@ -1,5 +1,6 @@
-body {
+body.background {
   color: black;
+  background-color: rgba(186, 190, 197, 0.598);
 }
 
 h1.section {
@@ -13,17 +14,32 @@ div.margin-div {
 
 div.padding {
   padding: 10px 20px;
+  color: white;
+}
+
+div .text-shadow {
+  /* background-color: #ccc; */
+  color: #fff !important;
+  text-shadow: 2px 2px 7px rgba(48, 48, 48, 0.527);
 }
 
 input.margin-sides {
   margin: 10px;
 }
 
+input#city_state {
+  padding-left: 10px;
+}
+
+div.justify-this {
+  margin-left: 0.5em !important;
+}
+
 div.do-this {
-  margin-right: 40px;
+  margin-right: 120px;
 }
 div.space-this {
-  margin: 15px !important;
+  margin: 10px !important;
   padding: 10px !important;
   font-size: inherit !important;
   color: white;
@@ -31,7 +47,7 @@ div.space-this {
 
 button.add-city {
   background-color: white;
-  color: black !important;
+  color: rgb(255, 255, 255) !important;
   margin-left: 15px !important;
   margin-bottom: 5px !important;
   border-color: black !important;

@@ -19,8 +19,10 @@ $(document).ready(function () {
   const unitImperial = "&units=imperial";
   // get degree symbol
   let degree = String.fromCharCode(176);
-  // get date
+
+  // get date for current day
   $("h4.city-name-date").text(moment().format("MMM Do[,] YYYY"));
+  // get days for future forecast
   let dateIndex = 1;
   while (dateIndex <= 5) {
     $(`div.date-${dateIndex}`).text(
@@ -38,8 +40,10 @@ $(document).ready(function () {
         let localStorageCity = window.localStorage.getItem(
           `city${indexStorage}`
         );
+        getWeather(localStorageCity);
+        // console.log(localStorageCity);
         $(dispStorage).append(
-          `<button class='col l8 center-align m8 s8 add-city z-depth-1 btn' name=${indexStorage} id='city${indexStorage}'>${localStorageCity}</button>`
+          `<button class='col blue lighten-1 text-shadow l8 center-align m8 s10 add-city z-depth-1 btn' name=${indexStorage} id='city${indexStorage}'>${localStorageCity}</button>`
         );
         nameValue++;
       }
@@ -48,8 +52,6 @@ $(document).ready(function () {
     searchButton.click(function (event) {
       // prevent page refresh
       event.preventDefault();
-      // hide the intro paragraph
-      // $("p.do-hide").hide();
       let cityInput = inputField.val().toLowerCase().trim();
 
       // get the city being put into input field
@@ -60,7 +62,7 @@ $(document).ready(function () {
       // let getCityID = `button#${cityID}`;
 
       // store variable to make button for city based on id and name value
-      const makeButton = `<button class='col l8 center-align m8 s8 add-city z-depth-1 btn' name=${nameValue} id=${cityID}>${cityInput}</button>`;
+      const makeButton = `<button class='col blue lighten-1 text-shadow l8 center-align m8 s10 add-city z-depth-1 btn' name=${nameValue} id=${cityID}>${cityInput}</button>`;
 
       addCity(cityInput, cityID, makeButton);
       getWeather(cityInput);
@@ -71,8 +73,6 @@ $(document).ready(function () {
     searchButton.click(function (event) {
       // prevent page refresh
       event.preventDefault();
-      // hide the intro paragraph
-      // $("p.do-hide").hide();
 
       // get the city being put into input field
       let cityInput = inputField.val().toLowerCase().trim();
@@ -83,7 +83,7 @@ $(document).ready(function () {
       let cityID = nameName + nameValue;
 
       // store variable to make button for city based on id and name value
-      const makeButton = `<button class='col l8 center-align m8 s8 add-city z-depth-1 btn' name=${nameValue} id=${cityID}>${cityInput}</button>`;
+      const makeButton = `<button class='col blue lighten-1 text-shadow l8 center-align m8 s8 add-city z-depth-1 btn' name=${nameValue} id=${cityID}>${cityInput}</button>`;
 
       addCity(cityInput, cityID, makeButton);
       getWeather(cityInput);
@@ -93,13 +93,9 @@ $(document).ready(function () {
   $(document).on("click", "button.add-city", function (event) {
     event.preventDefault();
 
-    let cityID = this.id;
     let cityInput = $(this).text();
 
     getWeather(cityInput);
-
-    console.log(cityID);
-    console.log(cityInput);
   });
 
   function addCity(cityInput, cityID, makeButton) {
