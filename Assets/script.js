@@ -29,67 +29,70 @@ $(document).ready(function () {
     dateIndex++;
   }
 
-  //////////////////////// LocalStorage ////////////////////////////
-  // first need to create buttons for any localStorage present
-  console.log(localStorage);
+  // create buttons for any localStorage present
+  if (localStorage.length !== 0) {
+    for (indexStorage = 0; indexStorage < localStorage.length; indexStorage++) {
+      // let indexStorage = +1;
+      if (window.localStorage.getItem(`city${indexStorage}`) !== null) {
+        let dispStorage = $("div.addCity");
+        let localStorageCity = window.localStorage.getItem(
+          `city${indexStorage}`
+        );
+        $(dispStorage).append(
+          `<button class='col l8 center-align m8 s8 add-city z-depth-1 btn'>${localStorageCity}</button>`
+        );
+        nameValue++;
+      }
+    }
 
-  let dispStorage = $("p.local-display");
-  let localStorageCity = window.localStorage.getItem("city1");
-  // console.log(dispStorage);
-  console.log(localStorageCity);
-  $(dispStorage).text(localStorageCity);
-  // $(dispStorage).text(window.localStorage.getItem("city1"));
+    searchButton.click(function (event) {
+      // prevent page refresh
+      event.preventDefault();
+      // hide the intro paragraph
+      $("p.do-hide").hide();
 
-  array.forEach((element) => {});
+      // get the city being put into input field
+      let cityInput = inputField.val().trim();
+      // for each click the name value will increase
+      nameValue = nameValue += 1;
+      // give city an id
+      let cityID = nameName + nameValue;
+      // let getCityID = `button#${cityID}`;
 
-  const makeButton = `<button class='col l8 center-align m8 s8 add-city z-depth-1 btn' name=${nameValue} id=${cityID}>${cityInput}</button>`;
-  //   for (let i = 1; i <= 20; i++) {
-  //     $(cityID).val(window.localStorage.getItem(cityID));
-  //   }
+      // store variable to make button for city based on id and name value
+      const makeButton = `<button class='col l8 center-align m8 s8 add-city z-depth-1 btn' name=${nameValue} id=${cityID}>${cityInput}</button>`;
 
-  // $(document).on("click", "button.add-city", function () {
-  //   let cityID = this.id;
-  //   let cityInput = $(this).text();
+      addCity(cityInput, cityID, makeButton);
+      getWeather(cityInput);
+    });
+  } else {
+    searchButton.click(function (event) {
+      // prevent page refresh
+      event.preventDefault();
+      // hide the intro paragraph
+      $("p.do-hide").hide();
 
-  //   console.log(cityID);
-  //   console.log(cityInput);
+      // get the city being put into input field
+      let cityInput = inputField.val().trim();
+      // for each click the name value will increase
+      nameValue = nameValue += 1;
+      // give city an id
+      let cityID = nameName + nameValue;
+      // let getCityID = `button#${cityID}`;
 
-  // get local storage and make data persistent
-  // for (let i = 8; i <= 17; i++) {
-  //   $("#hour" + i).val(window.localStorage.getItem("#hour" + i));
-  // }
-  // });
-  ///////////////////////////////////////////////////////////////////
+      // store variable to make button for city based on id and name value
+      const makeButton = `<button class='col l8 center-align m8 s8 add-city z-depth-1 btn' name=${nameValue} id=${cityID}>${cityInput}</button>`;
 
-  // search button click, add button
-  searchButton.click(function (event) {
-    // prevent page refresh
-    event.preventDefault();
-    // hide the intro paragraph
-    $("p.do-hide").hide();
-
-    // get the city being put into input field
-    let cityInput = inputField.val().trim();
-    // for each click the name value will increase
-    nameValue = nameValue += 1;
-    console.log(`nameValue ${nameValue}`);
-    // give city an id
-    let cityID = nameName + nameValue;
-    console.log(`cityID ${cityID}`);
-    // let getCityID = `button#${cityID}`;
-    // console.log(`getCityID ${getCityID}`);
-
-    // store variable to make button for city based on id and name value
-    const makeButton = `<button class='col l8 center-align m8 s8 add-city z-depth-1 btn' name=${nameValue} id=${cityID}>${cityInput}</button>`;
-
-    addCity(cityInput, cityID, makeButton);
-    getWeather(cityInput);
-  });
+      addCity(cityInput, cityID, makeButton);
+      getWeather(cityInput);
+    });
+  }
 
   function addCity(cityInput, cityID, makeButton) {
     // add if to catch empty strings
     $(changeCity).append(makeButton);
     window.localStorage.setItem(cityID, cityInput);
+    window.localStorage.setItem(cityInput, cityID);
   }
 
   // get today's UV index
@@ -99,8 +102,6 @@ $(document).ready(function () {
       method: "GET",
     }).then(function (response) {
       let uvIndexVal = `UV Index: ${response.value}`;
-
-      console.log(response);
 
       uvIndex.text(uvIndexVal);
       // let uvString = JSON.stringify(response.value);
@@ -149,7 +150,6 @@ $(document).ready(function () {
       url: `https://api.openweathermap.org/data/2.5/onecall?${unitImperial}${lat}${lon}${apiKey}`,
       method: "GET",
     }).then(function (response) {
-      console.log(response);
       let index = 1;
       while (index <= 5) {
         // get weather icons
