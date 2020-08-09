@@ -1,19 +1,24 @@
 $(document).ready(function () {
+  // get input field
   const inputField = $("#city_state");
+  // get search button
   const searchButton = $(".btn-floating");
-  const humidity = $(".hum");
+  // get weather paragraphs
+  const humidity = $("p.hum");
   const uvIndex = $("p.uvi");
   const temperature = $("p.temp");
   const windSpeed = $("p.wind");
   let changeCity = $("div.addCity");
+  // establish id values
   let nameName = "city";
   let nameValue = 0;
+  // api key and urls
   const apiKey = "&appid=8c016ee0d99e3197955a17c671e0b14c";
   const urlWeather = "https://api.openweathermap.org/data/2.5/weather?q=";
   const urlWeatherUV = "http://api.openweathermap.org/data/2.5/uvi?";
   const unitImperial = "&units=imperial";
+  // get degree symbol
   let degree = String.fromCharCode(176);
-
   // get date
   $("h4.city-name-date").text(moment().format("MMM Do[,] YYYY"));
   let dateIndex = 1;
@@ -24,29 +29,68 @@ $(document).ready(function () {
     dateIndex++;
   }
 
+  //////////////////////// LocalStorage ////////////////////////////
+  // first need to create buttons for any localStorage present
+  console.log(localStorage);
+
+  let dispStorage = $("p.local-display");
+  let localStorageCity = window.localStorage.getItem("city1");
+  // console.log(dispStorage);
+  console.log(localStorageCity);
+  $(dispStorage).text(localStorageCity);
+  // $(dispStorage).text(window.localStorage.getItem("city1"));
+
+  array.forEach((element) => {});
+
+  const makeButton = `<button class='col l8 center-align m8 s8 add-city z-depth-1 btn' name=${nameValue} id=${cityID}>${cityInput}</button>`;
+  //   for (let i = 1; i <= 20; i++) {
+  //     $(cityID).val(window.localStorage.getItem(cityID));
+  //   }
+
+  // $(document).on("click", "button.add-city", function () {
+  //   let cityID = this.id;
+  //   let cityInput = $(this).text();
+
+  //   console.log(cityID);
+  //   console.log(cityInput);
+
+  // get local storage and make data persistent
+  // for (let i = 8; i <= 17; i++) {
+  //   $("#hour" + i).val(window.localStorage.getItem("#hour" + i));
+  // }
+  // });
+  ///////////////////////////////////////////////////////////////////
+
   // search button click, add button
   searchButton.click(function (event) {
+    // prevent page refresh
     event.preventDefault();
+    // hide the intro paragraph
     $("p.do-hide").hide();
 
+    // get the city being put into input field
     let cityInput = inputField.val().trim();
+    // for each click the name value will increase
     nameValue = nameValue += 1;
-    let nameAll = nameName + nameValue;
-    let getNameAll = `button#${nameAll}`;
+    console.log(`nameValue ${nameValue}`);
+    // give city an id
+    let cityID = nameName + nameValue;
+    console.log(`cityID ${cityID}`);
+    // let getCityID = `button#${cityID}`;
+    // console.log(`getCityID ${getCityID}`);
 
-    function addCity() {
-      // add if to catch empty strings
-      $(changeCity).append(
-        // use $(document).click() to get created buttons
-        `<button class='col l8 center-align m8 s8 add-city z-depth-1 btn' name=${nameValue}>${cityInput}</button>`
-      );
-      window.localStorage.setItem(nameAll, cityInput);
-      $(getNameAll).val(window.localStorage.getItem(cityInput));
-    }
+    // store variable to make button for city based on id and name value
+    const makeButton = `<button class='col l8 center-align m8 s8 add-city z-depth-1 btn' name=${nameValue} id=${cityID}>${cityInput}</button>`;
 
-    addCity();
+    addCity(cityInput, cityID, makeButton);
     getWeather(cityInput);
   });
+
+  function addCity(cityInput, cityID, makeButton) {
+    // add if to catch empty strings
+    $(changeCity).append(makeButton);
+    window.localStorage.setItem(cityID, cityInput);
+  }
 
   // get today's UV index
   function getUV(lat, lon) {
@@ -56,7 +100,22 @@ $(document).ready(function () {
     }).then(function (response) {
       let uvIndexVal = `UV Index: ${response.value}`;
 
+      console.log(response);
+
       uvIndex.text(uvIndexVal);
+      // let uvString = JSON.stringify(response.value);
+
+      // if (uvString <= 2) {
+      //   $("p.uvi").addClass("uviGreen");
+      // } else if (uvString >= 3 || uvString <= 5) {
+      //   $("p.uvi").addClass("uviYellow");
+      // } else if (uvString >= 6 || uvString <= 7) {
+      //   $("p.uvi").addClass("uviOrange");
+      // } else if (uvString >= 8 || uvString <= 10) {
+      //   $("p.uvi").addClass("uviRed");
+      // } else if (uvString <= 11) {
+      //   $("p.uvi").addClass("uviViolet");
+      // }
     });
   }
 
@@ -90,6 +149,7 @@ $(document).ready(function () {
       url: `https://api.openweathermap.org/data/2.5/onecall?${unitImperial}${lat}${lon}${apiKey}`,
       method: "GET",
     }).then(function (response) {
+      console.log(response);
       let index = 1;
       while (index <= 5) {
         // get weather icons
@@ -105,6 +165,8 @@ $(document).ready(function () {
         $(`p.hum-${index}`).text(
           `Humidity: ${response.daily[index].humidity}%`
         );
+        // get uvi
+        $(`p.uvi-${index}`).text(`UV Index: ${response.daily[index].uvi}`);
         index++;
       }
     });
