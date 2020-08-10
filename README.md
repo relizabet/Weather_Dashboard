@@ -36,9 +36,13 @@ To run the program please visit the <a href="">Weather Dashboard</a> page.
 
 ### Examples of Program in Use
 
-![A Picture]()
+![Full Application](/Assets/full.png)
+![Mobile 1](/Assets/mobile1.png)
+![Mobile 2](/Assets/mobile2.png)
 
-### Notes
+### Challenges
+
+My greatest challenge on this assignment was using a new CSS framework - Materialize.css. I enjoyed branching out and using something different.
 
 ## Authors
 
