@@ -32,7 +32,8 @@ For this assignment we were asked to meet the following criteria:
 
 ## Getting Started
 
-To run the program please visit the <a href="">Weather Dashboard</a> page.
+To run the program please visit the <a href="https://relizabet.github.io/Weather_Dashboard/
+">Weather Dashboard</a> page.
 
 ### Examples of Program in Use
 
