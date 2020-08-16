@@ -28,7 +28,7 @@ For this assignment we were asked to meet the following criteria:
 ### Built With
 
 - <a href="https://openweathermap.org/api">OpenWeather API</a>
-- <a href="https://getbootstrap.com/">Bootstrap</a>
+- <a href="https://materializecss.com/">Materialize.css</a>
 - <a href="https://developer.mozilla.org/en-US/docs/Web/javascript">JavaScript</a>
 - <a href="https://api.jquery.com/">jQuery</a>
 
