@@ -1,5 +1,7 @@
 # Weather Dashboard
 
+A simple weather dashboard that allows the user to search their city of choice and get the current and 5 day extended weather forecast. Saves prior searches and loads the last searched city on page reload.
+
 ## About the Project
 
 For this assignment we were asked to meet the following criteria:

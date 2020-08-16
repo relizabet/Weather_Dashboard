@@ -51,47 +51,26 @@ $(document).ready(function () {
         getWeather(localStorageCity);
       }
     }
-
-    // when search button is clicked
-    searchButton.click(function () {
-      // determine what input was put into the input field / make it lower case always so === values can be used / trim any empty spaces added
-      let cityInput = inputField.val().toLowerCase().trim();
-
-      // for each click the name value will increase
-      nameValue = nameValue += 1;
-      // give city an id
-      let cityID = nameName + nameValue;
-      // let getCityID = `button#${cityID}`;
-
-      // store variable to make button for city based on id and name value
-      const makeButton = `<button class='col blue lighten-1 text-shadow l8 center-align m8 s10 add-city z-depth-1 btn' name=${nameValue} id=${cityID}>${cityInput}</button>`;
-
-      // create button based on the city input and give it an id based on where it's at in local storage
-      addCity(cityInput, cityID, makeButton);
-      // get the weather for the city that has been requested
-      getWeather(cityInput);
-    });
   }
+
   // if local storage is empty
-  else {
-    searchButton.click(function () {
-      // get the city being put into input field
-      let cityInput = inputField.val().toLowerCase().trim();
-      console.log(cityInput);
-      // for each click the name value will increase
-      nameValue = nameValue += 1;
-      // give city an id
-      let cityID = nameName + nameValue;
+  searchButton.click(function () {
+    // get the city being put into input field
+    let cityInput = inputField.val().toLowerCase().trim();
 
-      // store variable to make button for city based on id and name value
-      const makeButton = `<button class='col blue lighten-1 text-shadow l8 center-align m8 s8 add-city z-depth-1 btn' name=${nameValue} id=${cityID}>${cityInput}</button>`;
+    // for each click the name value will increase
+    nameValue = nameValue += 1;
+    // give city an id
+    let cityID = nameName + nameValue;
 
-      // create button based on the city input and give it an id based on where it's at in local storage
-      addCity(cityInput, cityID, makeButton);
-      // get the weather for the city that has been requested
-      getWeather(cityInput);
-    });
-  }
+    // store variable to make button for city based on id and name value
+    const makeButton = `<button class='col blue lighten-1 text-shadow l8 center-align m8 s8 add-city z-depth-1 btn' name=${nameValue} id=${cityID}>${cityInput}</button>`;
+
+    // create button based on the city input and give it an id based on where it's at in local storage
+    addCity(cityInput, cityID, makeButton);
+    // get the weather for the city that has been requested
+    getWeather(cityInput);
+  });
 
   // when any button with an 'add-city' class is pressed
   $(document).on("click", "button.add-city", function (event) {
